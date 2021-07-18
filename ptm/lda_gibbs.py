@@ -1,4 +1,5 @@
 from __future__ import print_function
+
 import time
 
 import numpy as np
@@ -9,7 +10,7 @@ from .base import BaseGibbsParamTopicModel
 from .formatted_logger import formatted_logger
 from .utils import sampling_from_dist
 
-logger = formatted_logger('GibbsLDA')
+logger = formatted_logger("GibbsLDA")
 
 
 class GibbsLDA(BaseGibbsParamTopicModel):
@@ -27,7 +28,14 @@ class GibbsLDA(BaseGibbsParamTopicModel):
     """
 
     def __init__(self, n_doc, n_voca, n_topic, alpha=0.1, beta=0.01, **kwargs):
-        super(GibbsLDA, self).__init__(n_doc=n_doc, n_voca=n_voca, n_topic=n_topic, alpha=alpha, beta=beta, **kwargs)
+        super(GibbsLDA, self).__init__(
+            n_doc=n_doc,
+            n_voca=n_voca,
+            n_topic=n_topic,
+            alpha=alpha,
+            beta=beta,
+            **kwargs
+        )
 
     def random_init(self, docs):
         """
@@ -85,7 +93,12 @@ class GibbsLDA(BaseGibbsParamTopicModel):
                     self.DT[di, new_topic] += 1
 
             if self.verbose:
-                logger.info('[ITER] %d,\telapsed time:%.2f,\tlog_likelihood:%.2f', iteration, time.clock() - prev, self.log_likelihood(docs))
+                logger.info(
+                    "[ITER] %d,\telapsed time:%.2f,\tlog_likelihood:%.2f",
+                    iteration,
+                    time.clock() - prev,
+                    self.log_likelihood(docs),
+                )
 
     def log_likelihood(self, docs):
         """
